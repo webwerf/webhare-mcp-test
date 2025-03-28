@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "A Model Context Protocol server",
   "private": true,
-  "type": "module",
   "bin": {
     "webhare-server": "./build/index.js"
   },
