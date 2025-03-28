@@ -27,6 +27,25 @@ Set this to `~/Library/Application Support/Claude/claude_desktop_config.json` (o
 
 See also: https://github.com/davidteren/claude-server/blob/main/docs/CLAUDE_DESKTOP_INTEGRATION.md
 
+### Cursor
+
+To enable the MCP in Cursor, add this to the MCP JSON settings (Cursor Settings => MCP => "Add new global MCP server"):
+
+```json
+{
+  "mcpServers": {
+    "webhare": {
+      "command": "/Users/wouter/webhare-runkit/bin/runkit",
+      "args": [
+        "wh",
+        "run",
+        "mod::mcp_test/src/index.ts"
+      ]
+    }
+  }
+}
+```
+
 ## Features
 
 - Get information about the WebHare installation
