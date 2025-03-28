@@ -250,18 +250,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const webhareDataRootExists = existsSync(WEBHARE_DATAROOT);
 
         response = {
-          content: [{
-            type: "text",
-            text: JSON.stringify({
-              webhareDir: WEBHARE_DIR,
-              webhareDataRoot: WEBHARE_DATAROOT,
-              webhareExists,
-              webhareCliExists,
-              webhareFunctionsExists,
-              webhareDataRootExists,
-              home: homedir()
-            }, null, 2)
-          }]
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                webhareDir: WEBHARE_DIR,
+                webhareDataRoot: WEBHARE_DATAROOT,
+                webhareExists,
+                webhareCliExists,
+                webhareFunctionsExists,
+                webhareDataRootExists,
+                home: homedir()
+              }, null, 2)
+            }
+          ]
         };
         break;
       }
@@ -273,10 +275,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const output = await executeCommand(`cd ${WEBHARE_DIR} && ${command}`);
 
         response = {
-          content: [{
-            type: "text",
-            text: output || "Command executed successfully with no output"
-          }]
+          content: [
+            {
+              type: "text",
+              text: output || "Command executed successfully with no output"
+            }
+          ]
         };
         break;
       }
@@ -289,10 +293,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const output = await executeWebHareCommand(command, args);
 
         response = {
-          content: [{
-            type: "text",
-            text: output || "Command executed successfully with no output"
-          }]
+          content: [
+            {
+              type: "text",
+              text: output || "Command executed successfully with no output"
+            }
+          ]
         };
         break;
       }
@@ -305,13 +311,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const modules = output.split(/\s+/).filter(Boolean);
 
         response = {
-          content: [{
-            type: "text",
-            text: JSON.stringify({
-              modules: modules,
-              count: modules.length
-            }, null, 2)
-          }]
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                modules: modules,
+                count: modules.length
+              }, null, 2)
+            }
+          ]
         };
         break;
       }
@@ -321,14 +329,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           // Check if WebHare is running
           const output = await executeWebHareCommand("isrunning", []);
           response = {
-            content: [{
-              type: "text",
-              text: JSON.stringify({
-                installed: true,
-                running: true,
-                message: "WebHare is installed and running"
-              }, null, 2)
-            }]
+            content: [
+              {
+                type: "text",
+                text: JSON.stringify({
+                  installed: true,
+                  running: true,
+                  message: "WebHare is installed and running"
+                }, null, 2)
+              }
+            ]
           };
         } catch (error) {
           // If the command fails, WebHare might be installed but not running
@@ -337,25 +347,29 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
           if (webhareExists && webhareCliExists) {
             response = {
-              content: [{
-                type: "text",
-                text: JSON.stringify({
-                  installed: true,
-                  running: false,
-                  message: "WebHare is installed but not running"
-                }, null, 2)
-              }]
+              content: [
+                {
+                  type: "text",
+                  text: JSON.stringify({
+                    installed: true,
+                    running: false,
+                    message: "WebHare is installed but not running"
+                  }, null, 2)
+                }
+              ]
             };
           } else {
             response = {
-              content: [{
-                type: "text",
-                text: JSON.stringify({
-                  installed: false,
-                  running: false,
-                  message: "WebHare is not installed"
-                }, null, 2)
-              }]
+              content: [
+                {
+                  type: "text",
+                  text: JSON.stringify({
+                    installed: false,
+                    running: false,
+                    message: "WebHare is not installed"
+                  }, null, 2)
+                }
+              ]
             };
           }
         }
@@ -372,10 +386,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     return response;
   } catch (error: any) {
     const errorResponse = {
-      content: [{
-        type: "text",
-        text: `Error: ${error.message}`
-      }],
+      content: [
+        {
+          type: "text",
+          text: `Error: ${error.message}`
+        }
+      ],
       isError: true
     };
     logToFile(`CALL TOOL ERROR: ${JSON.stringify(errorResponse, null, 2)}`);
