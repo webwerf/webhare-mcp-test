@@ -19,6 +19,8 @@ import { promisify } from "util";
 import { existsSync, appendFileSync } from "fs";
 import { homedir } from "os";
 
+import { listSites } from "@webhare/whfs";
+
 // Setup file logging
 const LOG_FILE = `${homedir()}/webhare-mcp-log.txt`;
 
@@ -237,7 +239,16 @@ server.setRequestHandler(ListToolsRequestSchema, async (request) => {
           type: "object",
           properties: {}
         }
+      },
+      {
+        name: "wh_sites",
+        description: "List the Publisher sites installed in this WebHare including their output URL",
+        inputSchema: {
+          type: "object",
+          properties: {}
+        }
       }
+
     ]
   };
   logToFile(`LIST TOOLS RESPONSE: ${JSON.stringify(response, null, 2)}`);
@@ -385,6 +396,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         break;
       }
+      case "wh_sites": {
+        const sites = await listSites();
+        response = {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                modules: sites,
+                count: sites.length
+              }, null, 2)
+            }
+          ]
+        };
+        break;
+      }
+
 
       default:
         throw new McpError(
