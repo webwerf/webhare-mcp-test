@@ -2,6 +2,31 @@
 
 This Model Context Protocol (MCP) server provides a simple interface to interact with the WebHare installation.
 
+## Installing as a WebHare Module
+- We except to be named `mcp_test`
+- Install us as `whdata/installedmodules/webwerf/mcp_test`
+
+### Claude Desktop
+
+Set this to `~/Library/Application Support/Claude/claude_desktop_config.json` (or add it to the mcpServers)
+
+```json
+{
+  "mcpServers": {
+      "webhare": {
+          "command": "/Users/arnold/projects/webhare-runkit/bin/runkit",
+          "args": [
+              "wh",
+              "run",
+              "mod::mcp_test/src/index.ts"
+          ]
+      }
+  }
+}
+```
+
+See also: https://github.com/davidteren/claude-server/blob/main/docs/CLAUDE_DESKTOP_INTEGRATION.md
+
 ## Features
 
 - Get information about the WebHare installation
