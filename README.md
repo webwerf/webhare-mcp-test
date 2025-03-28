@@ -29,22 +29,7 @@ See also: https://github.com/davidteren/claude-server/blob/main/docs/CLAUDE_DESK
 
 ### Cursor
 
-To enable the MCP in Cursor, add this to the MCP JSON settings (Cursor Settings => MCP => "Add new global MCP server"):
-
-```json
-{
-  "mcpServers": {
-    "webhare": {
-      "command": "/Users/wouter/webhare-runkit/bin/runkit",
-      "args": [
-        "wh",
-        "run",
-        "mod::mcp_test/src/index.ts"
-      ]
-    }
-  }
-}
-```
+To enable the MCP in Cursor, add this to the MCP JSON settings (Cursor Settings => MCP => "Add new global MCP server"). The JSON is the same as for Claude.
 
 ## Features
 
