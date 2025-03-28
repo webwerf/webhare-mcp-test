@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-explicit-any  -- used by the catch handlers */
 
 /**
  * WebHare MCP Server
@@ -337,7 +337,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "wh_status": {
         try {
           // Check if WebHare is running
-          const output = await executeWebHareCommand("isrunning", []);
+          await executeWebHareCommand("isrunning", []);
           response = {
             content: [
               {
