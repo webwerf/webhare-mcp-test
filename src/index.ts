@@ -109,6 +109,16 @@ async function executeCommand(command: string): Promise<string> {
  */
 async function executeWebHareCommand(command: string, args: string[] = []): Promise<string> {
   try {
+
+    /* FYI Simpler implementation using runkit to resolve all the paths
+           But strongly recommending eliminating executeWebHareCommand and accessing the APIs directly!
+    const result = spawnSync("runkit",["wh",...args],{shell:true});
+    if (result.error) {
+      throw new Error(`Failed to execute WebHare command: ${result.error.message}`);
+    }
+    return result.stdout.toString().trim();
+    */
+
     logToFile(`WEBHARE COMMAND: ${command} ${args.join(' ')}`);
     // Create a temporary script to execute the WebHare command
     const scriptContent = `
